@@ -4,6 +4,14 @@ import { useState } from 'react'
 const Nav = () => {
   const [isOpen, setOpen] = useState(false)
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+      setOpen(false)
+    }
+  }
+
   return (
     <nav className="fixed top-4 left-0 w-full z-50 px-4 sm:px-10">
       {/* 1. Main Container: สลับ Class ตามค่า isOpen */}
@@ -16,15 +24,15 @@ const Nav = () => {
         {/* 2. Top Bar (แถวบนสุด: โลโก้ + เมนูคอม + Hamburger) */}
         <div className="flex items-center justify-between px-6 sm:px-10 py-3 w-full">
           
-          <a href="#" className="font-mono text-xl sm:text-2xl tracking-widest flex items-center hover:text-gray-400 duration-300 transition-colors">
+          <button onClick={() => scrollToSection('home')} className="font-mono text-xl sm:text-2xl tracking-widest flex items-center hover:text-gray-400 duration-300 transition-colors bg-none border-none cursor-pointer">
             Kanokpong
-          </a>
+          </button>
 
           {/* Desktop Menu */}
           <div className="gap-8 items-center text-base sm:flex hidden">
-            <a href="#" className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors">About</a>
-            <a href="#" className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors">Projects</a>
-            <a href="#" className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors">Contact</a>
+            <button onClick={() => scrollToSection('about')} className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors bg-none border-none cursor-pointer">About</button>
+            <button onClick={() => scrollToSection('projects')} className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors bg-none border-none cursor-pointer">Projects</button>
+            <button onClick={() => scrollToSection('contact')} className="inline-flex items-center hover:text-gray-400 duration-300 transition-colors bg-none border-none cursor-pointer">Contact</button>
           </div>
 
           {/* Hamburger (ซ่อนบนคอม) */}
@@ -40,9 +48,9 @@ const Nav = () => {
             ${isOpen ? "max-h-64 opacity-100 pb-5 pt-2" : "max-h-0 opacity-0 pb-0 pt-0"}
           `}
         >
-          <a href="#" onClick={() => setOpen(false)} className="hover:text-gray-400 transition-colors">About</a>
-          <a href="#" onClick={() => setOpen(false)} className="hover:text-gray-400 transition-colors">Projects</a>
-          <a href="#" onClick={() => setOpen(false)} className="hover:text-gray-400 transition-colors">Contact</a>
+          <button onClick={() => scrollToSection('about')} className="hover:text-gray-400 transition-colors bg-none border-none cursor-pointer text-left">About</button>
+          <button onClick={() => scrollToSection('projects')} className="hover:text-gray-400 transition-colors bg-none border-none cursor-pointer text-left">Projects</button>
+          <button onClick={() => scrollToSection('contact')} className="hover:text-gray-400 transition-colors bg-none border-none cursor-pointer text-left">Contact</button>
         </div>
 
       </div>
